@@ -1,21 +1,21 @@
 /*
- 
+
 ░██████╗░██╗░░░██╗░█████╗░██████╗░██╗░░██╗  ██████╗░░░░░█████╗░
 ██╔═══██╗██║░░░██║██╔══██╗██╔══██╗██║░██╔╝  ╚════██╗░░░██╔══██╗
 ██║██╗██║██║░░░██║███████║██████╔╝█████═╝░  ░█████╔╝░░░██║░░██║
 ╚██████╔╝██║░░░██║██╔══██║██╔══██╗██╔═██╗░  ░╚═══██╗░░░██║░░██║
 ░╚═██╔═╝░╚██████╔╝██║░░██║██║░░██║██║░╚██╗  ██████╔╝██╗╚█████╔╝
 ░░░╚═╝░░░░╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝  ╚═════╝░╚═╝░╚════╝░
- 
- 
+
+
 Website:  https://www.quarktoken.io
 Marketplace: https://quarkmarket.com
 Telegram: https://t.me/QuarkToken
 Twitter:  @QuarkToken
- 
+
 CEO: @jimango
 CA author: @bLock_doctor
- 
+
 */
 // SPDX-License-Identifier: Unlicensed
 pragma solidity 0.8.12;
@@ -279,32 +279,32 @@ contract Ownable {
     }
 }
 contract QuarkToken3 is IERC20, Ownable {
- 
+
     uint8 private _buyTax = 5;
     uint8 private _sellTax = 5;
     uint8 private constant _decimals = 18;
- 
+
     uint256 private constant _totalSupply = 10000000000000 * 10 ** _decimals; // 10T
     uint256 private _swapTokenThreshold = 50000000000 * 10 ** _decimals;
- 
+
     string private constant _tokenName = "Quark 3.0 Token";
     string private constant _tokenSymbol = "QUARK 3";
- 
+
     bool private _tradingEnabled;
     bool private _swapEnabled;
     bool private _inSwap;
- 
+
     IUniRouterV2 private _router;
     address private _pairAddress;
     address public constant quarkCEO = address(0x6F0a450e3C949f3063f625f1004C360Ef4d2B49e);
     address public constant burnWallet = address(0xdead);
     address public constant zeroAddress = address(0);
- 
+
     mapping(address => uint256) private _balances;
     mapping(address => bool) private _excludedFromFees;
     mapping(address => bool) private _automatedMarketMakers;
     mapping(address => mapping (address => uint256)) private _allowances;
- 
+
     modifier LockTheSwap {
         _inSwap = true;
         _;
@@ -437,7 +437,7 @@ contract QuarkToken3 is IERC20, Ownable {
         token.transfer(msg.sender, token.balanceOf(address(this)));
     }
     // END OF OWNER FUNCTIONS \\ 
- 
+
     // START OF GETTERS \\
     function showTradeTaxes() public view returns (
         uint8 buyTax,
@@ -456,7 +456,7 @@ contract QuarkToken3 is IERC20, Ownable {
         return _swapTokenThreshold;
     }
     // END OF GETTERS \\ 
- 
+
     function transfer(
         address recipient, 
         uint256 amount
