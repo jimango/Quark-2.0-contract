@@ -13,7 +13,7 @@ contract HelloERC20 is ERC20Burnable, MessageClient {
 
     constructor(
         address quarkTokenAddress
-    ) ERC20("WrappedQuark", "WQuark") {
+    ) ERC20("WrappedQuark", "wQUARK") {
         _quarkTokenAddress = address(quarkTokenAddress);
         _quarkToken = IERC20(_quarkTokenAddress);
     }
